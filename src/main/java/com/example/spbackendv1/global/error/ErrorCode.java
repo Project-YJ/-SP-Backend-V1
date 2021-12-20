@@ -7,9 +7,12 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ErrorCode {
 
-    USER_NOT_FOUND_BY_EMAIL(400, "User Not Found By Email"),
-    USER_NOT_FOUND_BY_USERID(400, "User Not Found By Userid"),
-    INVALID_PASSWORD(400, "User Not Found By Email"),
+    USER_NOT_FOUND_BY_EMAIL(404, "User Not Found By Email"),
+    USER_NOT_FOUND_BY_USERID(404, "User Not Found By Userid"),
+    INVALID_PASSWORD(401, "Invalid Password"),
+
+    INVALID_TOKEN(401, "Invalid Token"),
+    EXPIRED_TOKEN(401, "Expired Token")
     ;
 
     private final int status;
