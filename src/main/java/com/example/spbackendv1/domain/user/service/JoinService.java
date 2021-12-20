@@ -2,7 +2,7 @@ package com.example.spbackendv1.domain.user.service;
 
 import com.example.spbackendv1.domain.user.api.dto.request.JoinRequest;
 import com.example.spbackendv1.domain.user.entity.User;
-import com.example.spbackendv1.domain.user.repository.UserJpaRepository;
+import com.example.spbackendv1.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class JoinService {
 
-    private final UserJpaRepository userJpaRepository;
+    private final UserRepository userRepository;
 
     public void realize(JoinRequest joinRequest) {
-        userJpaRepository.save(new User(joinRequest));
+        userRepository.save(new User(joinRequest));
     }
 }
