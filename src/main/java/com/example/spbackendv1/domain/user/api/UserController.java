@@ -22,6 +22,6 @@ public class UserController {
 
     @PutMapping
     public void login(@RequestBody LoginRequest loginRequest) {
-        loginService.realize();
+        loginService.realize(loginRequest);
     }
 }
