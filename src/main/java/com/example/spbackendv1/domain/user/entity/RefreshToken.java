@@ -30,4 +30,10 @@ public class RefreshToken {
         this.refreshToken = refreshToken;
         this.expiration = expiration;
     }
+
+    public String reissue(String refreshToken, Long expiration) {
+        this.refreshToken = refreshToken;
+        this.expiration = expiration;
+        return refreshToken;
+    }
 }

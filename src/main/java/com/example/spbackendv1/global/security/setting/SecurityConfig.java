@@ -33,7 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .anyRequest().permitAll();
+                .antMatchers("/user").permitAll()
+                .anyRequest().authenticated();
 
         http
                 .apply(new FilterConfig(jwtProvider));

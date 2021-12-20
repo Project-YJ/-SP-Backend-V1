@@ -25,6 +25,19 @@ public class JwtProvider {
     private final RefreshTokenRepository refreshTokenRepository;
     private final CustomUserDetailsService userDetailsService;
 
+    public TokenResponse reissue(String refreshToken) {
+        return refreshTokenRepository.findByRefreshToken(refreshToken)
+                .filter(token -> isRefresh(token.getRefreshToken()))
+                .map(token -> {
+                    String id = token.getId();
+                    return new TokenResponse(
+                            generateAccessToken(id),
+                            token.reissue(generateRefreshToken(id), jwtProperties.getRefreshExp())
+                    );
+                })
+                .orElseThrow(()-> InvalidTokenException.EXCEPTION);
+    }
+
     public TokenResponse generateToken(String id) {
         String access = generateAccessToken(id);
         String refresh = generateRefreshToken(id);
