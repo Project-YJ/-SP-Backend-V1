@@ -1,6 +1,7 @@
 package com.example.spbackendv1.domain.user.service;
 
 import com.example.spbackendv1.domain.user.api.dto.request.LoginRequest;
+import com.example.spbackendv1.domain.user.api.dto.response.TokenResponse;
 import com.example.spbackendv1.domain.user.entity.User;
 import com.example.spbackendv1.domain.user.exception.InvalidPasswordException;
 import com.example.spbackendv1.domain.user.facade.UserFacade;
@@ -17,12 +18,12 @@ public class LoginService {
     private final JwtProvider jwtProvider;
     private final UserFacade userFacade;
 
-    public void realize(LoginRequest loginRequest) {
+    public TokenResponse realize(LoginRequest loginRequest) {
 
         User user = userFacade.getUserById(loginRequest.getId());
         if( passwordEncoder.matches(loginRequest.getPassword(), user.getPassword()) )
             throw InvalidPasswordException.EXCEPTION;
 
-        jwtProvider.generateToken(loginRequest.getId());
+        return jwtProvider.generateToken(loginRequest.getId());
     }
 }

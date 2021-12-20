@@ -2,6 +2,7 @@ package com.example.spbackendv1.domain.user.api;
 
 import com.example.spbackendv1.domain.user.api.dto.request.JoinRequest;
 import com.example.spbackendv1.domain.user.api.dto.request.LoginRequest;
+import com.example.spbackendv1.domain.user.api.dto.response.TokenResponse;
 import com.example.spbackendv1.domain.user.service.JoinService;
 import com.example.spbackendv1.domain.user.service.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class UserController {
     }
 
     @PutMapping
-    public void login(@RequestBody LoginRequest loginRequest) {
-        loginService.realize(loginRequest);
+    public TokenResponse login(@RequestBody LoginRequest loginRequest) {
+        return loginService.realize(loginRequest);
     }
 }
